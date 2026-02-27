@@ -4,14 +4,75 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../ProjetoATV1/index.js">
     <title>app-web4</title>
   </head>
-  <style>
-    body {background-color: #27AEB9;}
+
+  <style >
+     body  {
+      background-color: #6495ED;
+      margin: auto;
+    }
+
+    
   </style>
+
+  <style>
+     #titulo {
+      background-color: #4169E1;
+      margin: 0;
+      padding: 20px;
+      font-size: 27px;
+      text-align: center;
+    }
+
+    #paleta {
+      font-size: 15px;
+      border-radius: 0;
+      border-style: inset;
+      
+    }
+
+    #lista {
+      border-color: black;
+      font-size: 20px;
+      margin: 0;
+      border: 15px solid;  
+      padding: 10px    
+    }
+  </style>
+
   <body>
-    Local de testes
+
+    <div id="barradecima">
+      <h1 id="titulo">
+        TITULO DO APP 
+        <button id="paletatitulo" onclick="Mudarpaleta()" ondblclick="mudarDenovo()">paleta titulo</button>
+      </h1>
+    </div>
+
+    <div id="lista">
+      <aside id="listacor">
+        <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+      </aside>
+    </div>
+    
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      function Mudarpaleta() {
+        document.getElementById('titulo').style.backgroundColor = 'red',
+        document.getElementById('titulo').style.color = 'white'
+      }
+      function mudarDenovo() {
+        document.getElementById('titulo').style.backgroundColor = '#4169E1',
+        document.getElementById('titulo').style.color = 'black'
+      }
+    </script>
   </body>
 </html>
