@@ -162,7 +162,7 @@ body.dark-body {
 body.dark-body .card {
   background-color: #1f2937;
   border: 1px solid #374151;
-  color: #f3f4f6;
+  color: black;
 }
 
 body.dark-body input{
