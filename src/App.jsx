@@ -1,6 +1,6 @@
 
-import { useState } from 'react'
-import {Trash2} from "lucide-react"
+import { useState, useEffect } from 'react'
+import {Trash2, Moon, Sun} from "lucide-react"
 import './App.css'
 
 function App() {
@@ -61,6 +61,16 @@ function App() {
   setIsModalOpen(true)
  }
 
+ const [darkMode, setDarkMode] = useState(false)
+
+ useEffect(() => {
+  if (darkMode) {
+    document.body.classList.add("dark-body")
+  } else {
+    document.body.classList.remove("dark-body")
+  }
+ }, [darkMode])
+
  return (
   <>
   <div className={`container ${themeColor}`}>
@@ -78,6 +88,10 @@ function App() {
       <button onClick={() => setThemeColor("blue")}>Azul</button>
       <button onClick={() => setThemeColor("green")}>Verde</button>
       <button onClick={() => setThemeColor("purple")}>Roxo</button>
+      <button className={`dark-toggle ${darkMode ? "dark-active" : ""}`}
+      onClick={() => setDarkMode(!darkMode)}>
+        {darkMode ? <Sun size={20}/> : <Moon size={20}/>}
+      </button>
     </div>
 
     <div className='card-container'>

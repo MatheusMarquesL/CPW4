@@ -8,6 +8,12 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-body {
+  background-color: #111827;
 }
 
 .container {
@@ -146,4 +152,46 @@ button:hover {
   display: flex;
   gap: 10px;
   justify-content: center;
+}
+
+body.dark-body {
+  background-color: #111827;
+  color: #f3f4f6;
+}
+
+body.dark-body .card {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  color: #f3f4f6;
+}
+
+body.dark-body input{
+  background-color: #1f2937;
+  color: white;
+  border: 1px solid #374151;
+}
+
+body.dark-body  .modal {
+  background-color: #1f2937;
+  color: white;
+}
+
+.dark-toggle {
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.dark-toggle:hover {
+  transform: scale(1.1);
+}
+
+body.dark-body .dark-toggle {
+  background-color: #374151;
+  color: #f3f4f6;
 }
