@@ -208,6 +208,7 @@ body.dark-body {
 body.dark-body .card {
   background-color: #1f2937;
   border: 1px solid #374151;
+  color: black;
 }
 
 body.dark-body input{
