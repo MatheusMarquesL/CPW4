@@ -1,9 +1,14 @@
 import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css"
 import { useState, useEffect } from "react";
 import { Trash2, Moon, Sun, Pencil, Save, CalendarDays } from "lucide-react";
-import "./App.css";
+import "../src/Style.scss";
+import errorIcon from "./assets/pare.png";
+import { useNavigate } from "react-router-dom";
+import pokeball from "./assets/bola.png"
 
 function App() {
+  const navigate = useNavigate()
   const [features, setFeatures] = useState([
     { id: 1, title: "Adicionar itens" },
     { id: 2, title: "Alterar cores da página" },
@@ -52,17 +57,25 @@ function App() {
   const [editedText, setEditedText] = useState("");
   const [date, setDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false)
+  const [error, setError] = useState("")
 
   function handleView(feature) {
     setSelectedFeature(feature);
     setEditedText(feature.title);
     setIsModalOpen(true);
     setIsEditing(false);
+    setError("")
   }
 
   function handleSaveEdit() {
+    if(editedText.trim() === "") {
+      setError("Preencha o campo")
+      return;
+    }
+    setError("")
+
     const updated = features.map((feature) =>
-      feature.id === selectedFeature.id
+      feature.id === selectedFeature?.id
         ? { ...feature, title: editedText }
         : feature,
     );
@@ -75,7 +88,7 @@ function App() {
     });
 
     setIsEditing(false);
-  }
+  } 
 
   const [darkMode, setDarkMode] = useState(false);
 
@@ -108,10 +121,17 @@ function App() {
           <button onClick={() => setThemeColor("green")}>Verde</button>
           <button onClick={() => setThemeColor("purple")}>Roxo</button>
           <button
-            className={`dark-toggle ${darkMode ? "dark-active" : ""}`}
+            className={`icon-button dark-toggle ${darkMode ? "dark-active" : ""}`}
             onClick={() => setDarkMode(!darkMode)}
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+
+          <button
+          className="icon-button"
+          onClick={() => navigate("/pokedex")}
+          >
+            <img src={pokeball} alt="pokedex" />
           </button>
         </div>
 
@@ -125,12 +145,21 @@ function App() {
 
             <div className="modal-text">
               {isEditing ? (
+                <>
                 <textarea
                   value={editedText}
                   onChange={(e) => setEditedText(e.target.value)}
                   rows={4}
                   style={{ width: "100%" }}
                 />
+
+                {error && (
+                <div className="error-message">
+                    <img src={errorIcon} alt="erro" />
+                    <p>{error}</p>
+                  </div>
+                )}
+                </>
               ) : (
                 <p>{selectedFeature?.title}</p>
               )}
