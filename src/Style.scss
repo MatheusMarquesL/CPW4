@@ -290,6 +290,7 @@ button {
 
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 @media (max-width: 600px) {
@@ -346,4 +347,35 @@ button {
 .stat-value {
     width: 40px;
     text-align: right;
+}
+
+
+.abilities {
+    margin-top: 15px;
+    width: 100%;
+
+    ul {
+        margin-top: 5px;
+        padding-left: 20px;
+    }
+
+    li {
+        text-transform: capitalize;
+    }
+}
+
+
+.images {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    img {
+        width: 120px;
+        transition: transform 0.2s ease;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }

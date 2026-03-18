@@ -8,7 +8,7 @@ function Pokedex() {
   async function fetchPokemon() {
     if (name.trim() === "") {
       setError("Digite o nome de um Pokémon");
-      setPokemon(null)
+      setPokemon(null);
       return;
     }
 
@@ -27,7 +27,7 @@ function Pokedex() {
       setPokemon(data);
     } catch (err) {
       setError(err.message);
-      setPokemon(null)
+      setPokemon(null);
     }
   }
 
@@ -38,7 +38,7 @@ function Pokedex() {
     "special-attack": "SP. ATK",
     "special-defense": "SP. DEF",
     speed: "SPD",
-  }
+  };
 
   return (
     <div>
@@ -49,8 +49,8 @@ function Pokedex() {
         placeholder="Nome"
         value={name}
         onChange={(e) => {
-            setName(e.target.value)
-            setError("")
+          setName(e.target.value);
+          setError("");
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -65,32 +65,49 @@ function Pokedex() {
       {pokemon && (
         <div className="pokedex-card">
           <div className="left">
-            <img 
-             src={pokemon.sprites.front_default}
-             alt={pokemon.name} 
-             />
-            <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+            <div className="images">
+              {pokemon.sprites.front_default && (
+                <img src={pokemon.sprites.front_default} alt="frente" />
+              )}
+
+              {pokemon.sprites.back_default && (
+                <img src={pokemon.sprites.back_default} alt="costas" />
+              )}
+            </div>
+            <h2>
+              {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+            </h2>
+
+            <p>
+              <strong>Tipo:</strong>{" "}
+              {pokemon.types.map((t) => t.type.name).join(", ")}
+            </p>
           </div>
 
           <div className="right">
             {pokemon.stats.map((stat) => (
-                <div key={stat.stat.name} className="stat">
-                    <span className="stat-name">
-                        {statNames[stat.stat.name]}
-                    </span>
+              <div key={stat.stat.name} className="stat">
+                <span className="stat-name">{statNames[stat.stat.name]}</span>
 
-                    <div className="stat-bar">
-                        <div
-                            className="stat-fill"
-                            style={{ "--width": `${Math.min(stat.base_stat, 100)}%` }}
-                        ></div>
-                    </div>
-
-                    <span className="stat-value">
-                        {stat.base_stat}
-                    </span>
+                <div className="stat-bar">
+                  <div
+                    className="stat-fill"
+                    style={{ "--width": `${Math.min(stat.base_stat, 100)}%` }}
+                  ></div>
                 </div>
+
+                <span className="stat-value">{stat.base_stat}</span>
+              </div>
             ))}
+          </div>
+
+          <div className="abilities">
+            <strong>Habilidades:</strong>
+            <ul>
+              {pokemon.abilities?.map((a, index) => (
+                <li key={index}>{a.ability.name}</li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
